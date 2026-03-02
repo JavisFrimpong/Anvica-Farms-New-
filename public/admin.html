@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anvica Farms — Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐔</text></svg>">
+</head>
+
+<body>
+
+    <!-- ========== AUTH SCREEN ========== -->
+    <div class="auth-container" id="authScreen">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <img src="/images/logo.png" alt="Anvica"
+                    style="width:60px;height:60px;border-radius:50%;object-fit:cover;margin:0 auto">
+                <h1>Anvica Farms</h1>
+                <p>Admin Dashboard</p>
+            </div>
+
+            <div class="auth-error" id="authError"></div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('signup')">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="auth-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="signupUsername" placeholder="Choose a username" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="signupPassword" placeholder="Create a password (min 6 chars)" required
+                        minlength="6">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Confirm Password</label>
+                    <input type="password" id="signupConfirm" placeholder="Confirm your password" required>
+                </div>
+                <button type="submit" class="auth-btn" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========== DASHBOARD ========== -->
+    <div class="dashboard" id="dashboard">
+        <!-- Header -->
+        <div class="dashboard-header">
+            <div class="logo">
+                <img src="/images/logo.png" alt="Anvica"
+                    style="width:32px;height:32px;border-radius:50%;object-fit:cover"> <span>Anvica Admin</span>
+            </div>
+            <div class="dashboard-nav">
+                <button class="active" onclick="switchTab('products')" data-tab="products">
+                    <i class="fas fa-box"></i> Products
+                </button>
+                <button onclick="switchTab('orders')" data-tab="orders">
+                    <i class="fas fa-shopping-bag"></i> Orders
+                </button>
+            </div>
+            <div class="header-actions">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    Welcome, <strong id="adminUsername">Admin</strong>
+                </div>
+                <a href="/" class="visit-site-btn" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> View Site
+                </a>
+                <button class="logout-btn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="dashboard-content">
+            <!-- Stats -->
+            <div class="stats-row" id="statsRow">
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="fas fa-box"></i></div>
+                    <div class="stat-info">
+                        <div class="label">Total Products</div>
+                        <div class="value" id="statProducts">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon orange"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="stat-info">
+                        <div class="label">Total Orders</div>
+                        <div class="value" id="statOrders">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="fas fa-coins"></i></div>
+                    <div class="stat-info">
+                        <div class="label">Revenue</div>
+                        <div class="value" id="statRevenue">₵0</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Panel -->
+            <div class="tab-panel active" id="productsPanel">
+                <div class="action-bar">
+                    <h2>Products</h2>
+                    <button class="add-product-btn" onclick="openProductModal()">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                </div>
+                <div class="products-table-wrapper">
+                    <table class="products-table">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                            <tr>
+                                <td colspan="5">
+                                    <div class="empty-table">
+                                        <i class="fas fa-box-open"></i>
+                                        <p>No products yet. Click "Add Product" to get started.</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Orders Panel -->
+            <div class="tab-panel" id="ordersPanel">
+                <div class="action-bar">
+                    <h2>Orders</h2>
+                </div>
+                <div class="orders-list" id="ordersList">
+                    <div class="empty-orders">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>No orders yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== PRODUCT MODAL ========== -->
+    <div class="admin-modal-overlay" id="productModal">
+        <div class="admin-modal">
+            <div class="admin-modal-header">
+                <h3 id="productModalTitle"><i class="fas fa-plus-circle"></i> Add Product</h3>
+                <button class="admin-modal-close" onclick="closeProductModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="admin-modal-body">
+                <form id="productForm" onsubmit="saveProduct(event)">
+                    <input type="hidden" id="productId">
+                    <div class="form-group">
+                        <label>Product Name *</label>
+                        <input type="text" id="productName" placeholder="e.g. Live Broiler Chicken" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="productDescription" placeholder="Describe your product..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₵) *</label>
+                        <input type="number" id="productPrice" placeholder="0.00" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="productCategory">
+                            <option value="Live Birds">Live Birds</option>
+                            <option value="Dressed Chicken">Dressed Chicken</option>
+                            <option value="Eggs">Eggs</option>
+                            <option value="Cuts & Parts">Cuts & Parts</option>
+                            <option value="Feed & Supplies">Feed & Supplies</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <div class="image-upload-area" id="imageUploadArea"
+                            onclick="document.getElementById('imageFileInput').click()">
+                            <div class="upload-placeholder" id="uploadPlaceholder">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Click to upload or drag & drop</p>
+                                <div class="upload-actions">
+                                    <button type="button" class="upload-btn"
+                                        onclick="event.stopPropagation(); document.getElementById('imageFileInput').click()">
+                                        <i class="fas fa-folder-open"></i> Browse Files
+                                    </button>
+                                    <button type="button" class="upload-btn"
+                                        onclick="event.stopPropagation(); document.getElementById('cameraInput').click()">
+                                        <i class="fas fa-camera"></i> Take Photo
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="image-preview" id="imagePreview">
+                                <img id="previewImg" src="" alt="Preview">
+                                <button type="button" class="remove-image"
+                                    onclick="event.stopPropagation(); removeSelectedImage()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <input type="file" id="imageFileInput" accept="image/*" style="display:none"
+                            onchange="handleImageSelect(event)">
+                        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="display:none"
+                            onchange="handleImageSelect(event)">
+                    </div>
+                    <div class="form-group">
+                        <div class="stock-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="productInStock" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span>In Stock</span>
+                        </div>
+                    </div>
+                    <button type="submit" class="save-product-btn" id="saveProductBtn">
+                        <i class="fas fa-save"></i> Save Product
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== TOAST ========== -->
+    <div class="admin-toast-container" id="adminToastContainer"></div>
+
+    <script src="/js/admin.js"></script>
+</body>
+
+</html>

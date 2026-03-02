@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Anvica Farms - Premium Fresh Poultry Products. Order farm-fresh chickens, eggs, and more delivered to your doorstep in Ghana.">
+  <title>Anvica Farms — Fresh Poultry, Always</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐔</text></svg>">
+</head>
+
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-logo">
+        <img src="/images/logo.png" alt="Anvica Farms" onerror="this.style.display='none'">
+        <span>Anvica Farms</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="cart-btn" id="cartToggle" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            Cart
+            <span class="cart-badge" id="cartBadge" style="display:none">0</span>
+          </button>
+        </li>
+      </ul>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fas fa-leaf"></i> Farm Fresh Guarantee
+        </div>
+        <h1>Fresh Poultry,<br><span class="highlight">Farm to Table</span></h1>
+        <p>Experience the finest quality poultry products from Anvica Farms. Raised with care, delivered with love —
+          straight from our farm to your kitchen.</p>
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">
+            <i class="fas fa-shopping-basket"></i> Shop Now
+          </a>
+          <a href="#about" class="btn btn-secondary">
+            Learn More <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div class="hero-image-wrapper">
+          <img src="/images/hero-poultry.jpg" alt="Fresh Poultry Products" id="heroImage">
+          <div class="hero-float-card card-1">
+            <div class="icon green"><img src="/images/fresh-eggs.jpg" alt="Fresh Eggs"
+                style="width:40px;height:40px;border-radius:50%;object-fit:cover"></div>
+            <div class="info">
+              <p>Daily Fresh</p>
+              <strong>Farm Eggs</strong>
+            </div>
+          </div>
+          <div class="hero-float-card card-2">
+            <div class="icon orange"><img src="/images/live-chicken.jpg" alt="Live Birds"
+                style="width:40px;height:40px;border-radius:50%;object-fit:cover"></div>
+            <div class="info">
+              <p>Premium Quality</p>
+              <strong>Live Birds</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <img src="/images/about-farm.jpg" alt="Anvica Farm">
+          <div class="experience-badge">
+            <div class="number">5+</div>
+            <div class="label">Years of<br>Excellence</div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag"><i class="fas fa-seedling"></i> Our Story</div>
+          <h2>Welcome to Anvica Farms</h2>
+          <p>Located in <strong>Amasaman, Accra</strong>, Anvica Farms is a trusted name in premium poultry farming in
+            Ghana. We are dedicated to raising healthy, happy birds using sustainable farming practices that produce the
+            freshest, most nutritious poultry products for your family.</p>
+          <p>From our carefully managed free-range environments to our strict hygiene standards, every step is taken to
+            ensure you receive only the best. We believe in quality over quantity, delivering farm-fresh products that
+            you can trust.</p>
+          <div class="about-features">
+            <div class="about-feature">
+              <i class="fas fa-check-circle"></i> 100% Farm Fresh
+            </div>
+            <div class="about-feature">
+              <i class="fas fa-check-circle"></i> Quality Assured
+            </div>
+            <div class="about-feature">
+              <i class="fas fa-check-circle"></i> Fast Delivery
+            </div>
+            <div class="about-feature">
+              <i class="fas fa-check-circle"></i> Best Prices
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRODUCTS ========== -->
+  <section class="products-section" id="products">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag"><i class="fas fa-store"></i> Our Products</div>
+        <h2>Fresh from the Farm</h2>
+        <p>Browse our selection of premium poultry products, carefully raised and prepared for your table.</p>
+      </div>
+      <div class="products-grid" id="productsGrid">
+        <div class="loading-overlay">
+          <div class="spinner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <img src="/images/logo.png" alt="Anvica" onerror="this.style.display='none'">
+            Anvica Farms
+          </div>
+          <p>Your trusted source for premium poultry products in Ghana. Farm fresh, always delicious.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Us</h4>
+          <ul class="footer-links footer-contact">
+            <li><i class="fas fa-phone"></i> +233 55 582 4836</li>
+            <li><i class="fas fa-envelope"></i> anvicafarm@gmail.com</li>
+            <li><i class="fas fa-map-marker-alt"></i> Amasaman, Accra, Ghana</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Anvica Farms. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== CART SIDEBAR ========== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3><i class="fas fa-shopping-cart"></i> Your Cart</h3>
+      <button class="cart-close-btn" onclick="toggleCart()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty" id="cartEmpty">
+        <i class="fas fa-shopping-basket"></i>
+        <p>Your cart is empty</p>
+      </div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span>Total:</span>
+        <strong id="cartTotal">₵0.00</strong>
+      </div>
+      <button class="checkout-btn" onclick="openCheckout()">
+        <i class="fas fa-lock"></i> Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- ========== CHECKOUT MODAL ========== -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fas fa-clipboard-list"></i> Checkout</h3>
+        <button class="modal-close" onclick="closeCheckout()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="order-summary-mini" id="orderSummaryMini"></div>
+        <form id="checkoutForm" onsubmit="showOrderPreview(event)">
+          <div class="form-group">
+            <label for="customerName"><i class="fas fa-user"></i> Full Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="customerPhone"><i class="fas fa-phone"></i> Phone Number</label>
+            <input type="tel" id="customerPhone" placeholder="e.g. 024 XXX XXXX" required>
+          </div>
+          <div class="form-group">
+            <label for="customerAddress"><i class="fas fa-map-marker-alt"></i> Delivery Address</label>
+            <textarea id="customerAddress" placeholder="Enter your delivery address" required></textarea>
+          </div>
+          <button type="submit" class="checkout-btn">
+            <i class="fas fa-eye"></i> Preview Order
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ORDER PREVIEW MODAL ========== -->
+  <div class="modal-overlay" id="previewModal">
+    <div class="modal" style="max-width:560px">
+      <div class="modal-header">
+        <h3><i class="fas fa-eye"></i> Order Preview</h3>
+        <button class="modal-close" onclick="closePreview()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color:var(--text-light);margin-bottom:16px">Please review your order details before confirming.</p>
+        <div class="order-summary-mini" id="previewCustomerDetails"></div>
+        <div class="order-summary-mini" id="previewOrderItems" style="margin-top:12px"></div>
+        <div style="display:flex;gap:12px;margin-top:20px">
+          <button class="btn btn-secondary" onclick="closePreview()" style="flex:1;justify-content:center">
+            <i class="fas fa-arrow-left"></i> Edit
+          </button>
+          <button class="checkout-btn" id="confirmOrderBtn" onclick="confirmOrder()" style="flex:2">
+            <i class="fas fa-paper-plane"></i> Confirm Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ORDER CONFIRMATION MODAL ========== -->
+  <div class="modal-overlay" id="confirmationModal">
+    <div class="modal">
+      <div class="confirmation-content">
+        <div class="confirmation-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <h3>Order Placed Successfully!</h3>
+        <p>Your order number is:</p>
+        <div class="order-num" id="orderNumber">ANV-0001</div>
+        <p>We've received your order and will contact you shortly to confirm delivery. Thank you for choosing Anvica
+          Farms!</p>
+        <button class="btn btn-primary" onclick="closeConfirmation()">
+          <i class="fas fa-home"></i> Continue Shopping
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST CONTAINER ========== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/js/app.js"></script>
+</body>
+
+</html>
