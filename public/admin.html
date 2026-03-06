@@ -33,8 +33,8 @@
             <!-- Login Form -->
             <form class="auth-form active" id="loginForm" onsubmit="handleLogin(event)">
                 <div class="form-group">
-                    <label><i class="fas fa-user"></i> Username</label>
-                    <input type="text" id="loginUsername" placeholder="Enter your username" required>
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="loginUsername" placeholder="Enter your email address" required>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-lock"></i> Password</label>
@@ -49,7 +49,11 @@
             <form class="auth-form" id="signupForm" onsubmit="handleSignup(event)">
                 <div class="form-group">
                     <label><i class="fas fa-user"></i> Username</label>
-                    <input type="text" id="signupUsername" placeholder="Choose a username" required>
+                    <input type="text" id="signupDisplayName" placeholder="Choose a display name" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email</label>
+                    <input type="email" id="signupUsername" placeholder="Enter your email address" required>
                 </div>
                 <div class="form-group">
                     <label><i class="fas fa-lock"></i> Password</label>
@@ -159,8 +163,18 @@
 
             <!-- Orders Panel -->
             <div class="tab-panel" id="ordersPanel">
-                <div class="action-bar">
-                    <h2>Orders</h2>
+                <div class="action-bar" style="display:flex; align-items:center; justify-content:space-between">
+                    <h2 style="display:flex; align-items:center; gap:16px;">
+                        Orders
+                        <select id="orderFilter" onchange="loadOrders()"
+                            style="font-size:14px; padding:6px 12px; border-radius:6px; border:1px solid #ddd; outline:none; cursor:pointer;"
+                            title="Filter Orders">
+                            <option value="all">All Orders</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </h2>
                 </div>
                 <div class="orders-list" id="ordersList">
                     <div class="empty-orders">
@@ -258,6 +272,9 @@
     <!-- ========== TOAST ========== -->
     <div class="admin-toast-container" id="adminToastContainer"></div>
 
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/supabase-config.js"></script>
     <script src="/js/admin.js"></script>
 </body>
 

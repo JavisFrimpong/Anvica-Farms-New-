@@ -558,12 +558,9 @@ body {
     inset: 0;
     background: rgba(0, 0, 0, 0.7);
     z-index: 3000;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition);
     padding: 20px;
 }
 
@@ -1007,6 +1004,171 @@ body {
     to {
         transform: rotate(360deg);
     }
+}
+
+/* --- Status Badges --- */
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.status-badge.in-stock {
+    background: rgba(39, 174, 96, 0.15);
+    color: var(--admin-success);
+}
+
+.status-badge.out-of-stock {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--admin-error);
+}
+
+/* --- Product Action Buttons --- */
+.action-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: var(--transition);
+    margin: 0 2px;
+}
+
+.action-btn.edit {
+    background: rgba(52, 152, 219, 0.15);
+    color: #3498db;
+}
+
+.action-btn.edit:hover {
+    background: #3498db;
+    color: white;
+}
+
+.action-btn.delete {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--admin-error);
+}
+
+.action-btn.delete:hover {
+    background: var(--admin-error);
+    color: white;
+}
+
+/* --- Order Card Enhancements --- */
+.order-card-body {
+    padding: 0 20px 16px;
+    border-top: 1px solid var(--admin-border);
+}
+
+.order-customer {
+    padding-top: 16px;
+}
+
+.order-customer p {
+    font-size: 0.88rem;
+    margin-bottom: 6px;
+    color: var(--admin-text);
+}
+
+.order-customer p i {
+    width: 20px;
+    color: var(--admin-text-muted);
+    margin-right: 6px;
+}
+
+.order-items-list {
+    margin-top: 12px;
+    padding: 12px;
+    background: var(--admin-bg);
+    border-radius: 8px;
+}
+
+.order-item-row {
+    padding: 6px 0;
+    font-size: 0.88rem;
+    color: var(--admin-text);
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.order-item-row:last-child {
+    border-bottom: none;
+}
+
+.order-total {
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--admin-accent);
+    text-align: right;
+}
+
+.order-card-actions {
+    padding: 12px 20px;
+    border-top: 1px solid var(--admin-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-select {
+    padding: 8px 12px;
+    background: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    color: var(--admin-text);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+}
+
+.order-status {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.order-status.pending {
+    background: rgba(243, 156, 18, 0.15);
+    color: var(--admin-warning);
+}
+
+.order-status.confirmed {
+    background: rgba(52, 152, 219, 0.15);
+    color: #3498db;
+}
+
+.order-status.delivered {
+    background: rgba(74, 124, 40, 0.15);
+    color: var(--admin-primary-light);
+}
+
+.order-status.completed {
+    background: rgba(39, 174, 96, 0.15);
+    color: var(--admin-success);
+}
+
+.order-status.cancelled {
+    background: rgba(231, 76, 60, 0.15);
+    color: var(--admin-error);
+}
+
+.order-date {
+    font-size: 0.82rem;
+    color: var(--admin-text-muted);
+    margin-left: 12px;
 }
 
 /* --- Responsive --- */

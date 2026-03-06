@@ -12,11 +12,11 @@ Anvica Farms is a modern e-commerce platform dedicated to providing fresh, high-
 - **Location Awareness**: Integrated farm location and contact details for transparency.
 
 ### **Admin Dashboard**
-- **Secure Authentication**: Admin login and signup functionality.
+- **Secure Authentication**: Admin login and signup via Supabase Auth.
 - **Comprehensive Management**: Full CRUD operations (Create, Read, Update, Delete) for products.
-- **Order Tracking**: Detailed view of customer orders, including totals and status.
+- **Order Tracking**: Detailed view of customer orders with status management.
 - **Live Stats**: At-a-glance dashboard showing total products, orders, and revenue.
-- **Image Uploads**: Support for local file selection or direct camera capture for product images.
+- **Image Uploads**: Support for local file selection or direct camera capture for product images (stored in Supabase Storage).
 
 ## 🛠️ Tech Stack
 
@@ -26,13 +26,11 @@ Anvica Farms is a modern e-commerce platform dedicated to providing fresh, high-
 - **Icons**: Font Awesome 6.
 
 ### **Backend & Persistence**
-- **Firebase**: 
-  - **Authentication**: Secure admin access.
-  - **Firestore**: Scalable NoSQL database for products and orders.
-  - **Storage**: Cloud storage for high-quality product images.
-- **Node.js & Express**: Backend server for utility services.
-- **sql.js**: SQLite in JavaScript for localized data handling.
-- **Vercel KV**: Key-value storage for backend persistence and synchronization.
+- **Supabase**: 
+  - **Authentication**: Secure admin access via Supabase Auth.
+  - **Database**: PostgreSQL for products and orders.
+  - **Storage**: Bucket-based storage for product images.
+- **Node.js & Express**: Backend server for serving static files and email notifications.
 - **Nodemailer**: Automated Gmail notifications for new orders.
 
 ## 📦 Setup & Installation
@@ -52,17 +50,14 @@ Anvica Farms is a modern e-commerce platform dedicated to providing fresh, high-
    Create a `.env` file in the root directory:
    ```env
    PORT=3000
-   JWT_SECRET=your_secret_key
    EMAIL_USER=your_gmail@gmail.com
    EMAIL_PASS=your_gmail_app_password
-   # Vercel KV Credentials
-   KV_URL=...
-   KV_REST_API_URL=...
-   KV_REST_API_TOKEN=...
    ```
 
-4. **Firebase Configuration**:
-   Update the Firebase configuration in `public/js/app.js` and `public/js/admin.js` with your project credentials.
+4. **Supabase Configuration**:
+   Update the Supabase URL and anon key in `public/js/supabase-config.js` with your project credentials. Make sure the following tables exist in your Supabase project:
+   - **products**: `id`, `name`, `description`, `price`, `category`, `image`, `in_stock`, `created_at`, `updated_at`
+   - **orders**: `id`, `order_number`, `customer_name`, `customer_phone`, `customer_address`, `items` (jsonb), `total`, `status`, `created_at`
 
 5. **Start the server**:
    ```bash
@@ -71,11 +66,11 @@ Anvica Farms is a modern e-commerce platform dedicated to providing fresh, high-
 
 ## 📂 Project Structure
 
-- `/public`: Frontend assets (HTML, CSS, JS, Images).
-- `/public/js/app.js`: Storefront logic.
-- `/public/js/admin.js`: Admin dashboard logic.
-- `/server.js`: Node.js server and API routes.
-- `database.db`: Local SQLite database file.
+- `/public` — Frontend assets (HTML, CSS, JS, Images)
+- `/public/js/supabase-config.js` — Supabase connection config
+- `/public/js/app.js` — Storefront logic
+- `/public/js/admin.js` — Admin dashboard logic
+- `/server.js` — Node.js server (static files + email notifications)
 
 ---
 © 2026 Anvica Farms. Fresh Poultry, Always.
