@@ -147,12 +147,15 @@ async function loadStats() {
 async function updateRevenue() {
   const { data: orders, error } = await supabaseClient
     .from('orders')
-    .select('total');
+    .select('total, status');
 
   if (!error && orders) {
     let total = 0;
     orders.forEach(order => {
-      total += order.total || 0;
+      // Only sum up revenue for completed orders
+      if (order.status === 'completed') {
+        total += order.total || 0;
+      }
     });
     document.getElementById("statRevenue").textContent = `₵${total.toFixed(2)}`;
   }
@@ -373,7 +376,7 @@ async function loadOrders() {
         <div class="order-total">Total: ₵${Number(order.total).toFixed(2)}</div>
       </div>
       <div class="order-card-actions">
-        <select onchange="updateOrderStatus('${order.id}', this.value)" class="status-select">
+        <select onchange="updateOrderStatus('${order.id}', this.value, this)" class="status-select">
           <option value="pending" ${order.status === 'pending' ? 'selected' : ''}>Pending</option>
           <option value="confirmed" ${order.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
           <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Delivered</option>
@@ -389,10 +392,24 @@ async function loadOrders() {
 // =====================
 // UPDATE ORDER STATUS
 // =====================
-async function updateOrderStatus(id, status) {
+async function updateOrderStatus(id, status, selectElement) {
   const { error } = await supabaseClient.from('orders').update({ status }).eq('id', id);
   if (!error) {
     showToast(`Order marked as ${status}`);
+
+    // Dynamically update the UI badge without reloading
+    if (selectElement) {
+      const card = selectElement.closest('.order-card');
+      if (card) {
+        const badge = card.querySelector('.order-status');
+        if (badge) {
+          badge.className = `order-status ${status}`;
+          badge.textContent = status;
+        }
+      }
+    }
+
+    // Refresh stats (which now sums ONLY completed revenue)
     loadStats();
   } else {
     showToast(error.message, true);

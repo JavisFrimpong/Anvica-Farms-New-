@@ -1174,27 +1174,46 @@ body {
 /* --- Responsive --- */
 @media (max-width: 768px) {
     .dashboard-header {
-        padding: 12px 16px;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-
-    .dashboard-nav {
-        order: 3;
-        width: 100%;
-    }
-
-    .dashboard-content {
-        padding: 20px 16px;
-    }
-
-    .products-table th:nth-child(3),
-    .products-table td:nth-child(3) {
-        display: none;
+        padding: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
     }
 
     .header-actions {
-        gap: 6px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dashboard-nav {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .dashboard-nav button {
+        flex: 1;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .dashboard-content {
+        padding: 16px;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .products-table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .products-table {
+        min-width: 600px;
+        /* Forces scroll on small devices */
     }
 
     .user-info {
@@ -1205,5 +1224,26 @@ body {
         flex-direction: column;
         gap: 12px;
         align-items: flex-start;
+    }
+
+    .action-bar h2 {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .order-card-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .status-select {
+        width: 100%;
     }
 }
